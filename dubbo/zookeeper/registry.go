@@ -22,14 +22,11 @@ import (
 	"net/url"
 	"sync"
 	"time"
-)
 
-import (
 	"github.com/dubbogo/go-zookeeper/zk"
-	perrors "github.com/pkg/errors"
-)
 
-import (
+	perrors "github.com/pkg/errors"
+
 	registry "github.com/mosn/registry/dubbo"
 	"github.com/mosn/registry/dubbo/common"
 	"github.com/mosn/registry/dubbo/common/constant"
@@ -58,7 +55,7 @@ type zkRegistry struct {
 }
 
 // NewZkRegistry returns a zookeeper registry
-func NewZkRegistry(url *common.URL) (registry.Registry, error) {
+func NewZkRegistry(url *common.URL) (*zkRegistry, error) {
 	var (
 		err error
 		r   *zkRegistry
