@@ -18,20 +18,17 @@
 package zookeeper
 
 import (
-	registry "github.com/mosn/registry/dubbo"
 	"strings"
 	"sync"
-)
 
-import (
-	perrors "github.com/pkg/errors"
-)
-
-import (
 	"github.com/mosn/registry/dubbo/common"
 	"github.com/mosn/registry/dubbo/common/logger"
 	"github.com/mosn/registry/dubbo/config_center"
+	perrors "github.com/pkg/errors"
+
+	registry "github.com/mosn/registry/dubbo"
 	"github.com/mosn/registry/dubbo/remoting"
+
 	zk "github.com/mosn/registry/dubbo/remoting/zookeeper"
 )
 
@@ -54,6 +51,16 @@ func (l *RegistryDataListener) SubscribeURL(url *common.URL, listener config_cen
 		return
 	}
 	l.subscribed[url] = listener
+}
+
+// UnSubscribeURL is used to set a watch listener for url
+func (l *RegistryDataListener) UnSubscribeURL(url *common.URL) config_center.ConfigurationListener {
+	if l.closed {
+		return nil
+	}
+	listener := l.subscribed[url]
+	delete(l.subscribed, url)
+	return listener
 }
 
 // DataChange accepts all events sent from the zookeeper server and trigger the corresponding listener for processing
@@ -102,7 +109,7 @@ func (l *RegistryDataListener) Close() {
 // RegistryConfigurationListener represent the processor of zookeeper watcher
 type RegistryConfigurationListener struct {
 	client    *zk.ZookeeperClient
-	registry  *ZkRegistry
+	registry  *zkRegistry
 	events    chan *config_center.ConfigChangeEvent
 	isClosed  bool
 	close     chan struct{}
@@ -110,7 +117,7 @@ type RegistryConfigurationListener struct {
 }
 
 // NewRegistryConfigurationListener for listening the event of zk.
-func NewRegistryConfigurationListener(client *zk.ZookeeperClient, reg *ZkRegistry) *RegistryConfigurationListener {
+func NewRegistryConfigurationListener(client *zk.ZookeeperClient, reg *zkRegistry) *RegistryConfigurationListener {
 	reg.WaitGroup().Add(1)
 	return &RegistryConfigurationListener{client: client, registry: reg, events: make(chan *config_center.ConfigChangeEvent, 32), isClosed: false, close: make(chan struct{}, 1)}
 }
