@@ -19,15 +19,11 @@ package zookeeper
 
 import (
 	"sync"
-)
-import (
-	"github.com/apache/dubbo-getty"
-	perrors "github.com/pkg/errors"
-)
 
-import (
+	"github.com/dubbogo/getty"
 	"github.com/mosn/registry/dubbo/common"
 	"github.com/mosn/registry/dubbo/common/logger"
+	perrors "github.com/pkg/errors"
 )
 
 type ZkClientFacade interface {

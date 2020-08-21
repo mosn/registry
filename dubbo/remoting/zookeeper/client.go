@@ -22,16 +22,12 @@ import (
 	"strings"
 	"sync"
 	"time"
-)
 
-import (
 	"github.com/dubbogo/go-zookeeper/zk"
-	perrors "github.com/pkg/errors"
-)
 
-import (
 	"github.com/mosn/registry/dubbo/common/constant"
 	"github.com/mosn/registry/dubbo/common/logger"
+	perrors "github.com/pkg/errors"
 )
 
 const (

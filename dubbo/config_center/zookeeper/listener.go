@@ -20,9 +20,7 @@ package zookeeper
 import (
 	"strings"
 	"sync"
-)
 
-import (
 	"github.com/mosn/registry/dubbo/config_center"
 	"github.com/mosn/registry/dubbo/remoting"
 )

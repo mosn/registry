@@ -29,7 +29,6 @@ import (
 	"time"
 
 	gxnet "github.com/dubbogo/gost/net"
-
 	"github.com/mosn/registry/dubbo/common"
 	"github.com/mosn/registry/dubbo/common/constant"
 	"github.com/mosn/registry/dubbo/common/logger"
@@ -41,12 +40,11 @@ const (
 	RegistryConnDelay = 3
 	// MaxWaitInterval max wait interval
 	MaxWaitInterval = 3 * time.Second
-
 )
 
 var (
-	processID = ""
-	localIP   = ""
+	processID       = ""
+	localIP         = ""
 	RegisteredError = errors.New("already registered")
 )
 

@@ -15,44 +15,15 @@
  * limitations under the License.
  */
 
-package logger
+package curator_discovery
 
-// Info is info level
-func Info(args ...interface{}) {
-	logger.Info(args...)
-}
-
-// Warn is warning level
-func Warn(args ...interface{}) {
-	logger.Warn(args...)
-}
-
-// Error is error level
-func Error(args ...interface{}) {
-	logger.Error(args...)
-}
-
-// Debug is debug level
-func Debug(args ...interface{}) {
-	logger.Debug(args...)
-}
-
-// Infof is format info level
-func Infof(fmt string, args ...interface{}) {
-	logger.Infof(fmt, args...)
-}
-
-// Warnf is format warning level
-func Warnf(fmt string, args ...interface{}) {
-	logger.Warnf(fmt, args...)
-}
-
-// Errorf is format error level
-func Errorf(fmt string, args ...interface{}) {
-	logger.Errorf(fmt, args...)
-}
-
-// Debugf is format debug level
-func Debugf(fmt string, args ...interface{}) {
-	logger.Debugf(fmt, args...)
+// ServiceInstance which define in curator-x-discovery, please refer to
+// https://github.com/apache/curator/blob/master/curator-x-discovery/src/main/java/org/apache/curator/x/discovery/ServiceInstance.java
+type ServiceInstance struct {
+	Name                string
+	Id                  string
+	Address             string
+	Port                int
+	Payload             interface{}
+	RegistrationTimeUTC int64
 }
