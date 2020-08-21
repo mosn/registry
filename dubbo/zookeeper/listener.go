@@ -20,18 +20,22 @@ package zookeeper
 import (
 	"strings"
 	"sync"
+)
 
-	registry "github.com/mosn/registry/dubbo"
+import (
+	perrors "github.com/pkg/errors"
+)
+
+import (
 	"github.com/mosn/registry/dubbo/common"
 	"github.com/mosn/registry/dubbo/common/logger"
 	"github.com/mosn/registry/dubbo/config_center"
+	"github.com/mosn/registry/dubbo/registry"
 	"github.com/mosn/registry/dubbo/remoting"
-	perrors "github.com/pkg/errors"
-
 	zk "github.com/mosn/registry/dubbo/remoting/zookeeper"
 )
 
-// RegistryDataLisntains all URL information subscribed by zookeeper registry
+// RegistryDataListener contains all URL information subscribed by zookeeper registry
 type RegistryDataListener struct {
 	subscribed map[string]config_center.ConfigurationListener
 	mutex      sync.Mutex
