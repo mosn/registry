@@ -20,19 +20,14 @@ package zookeeper
 import (
 	"strings"
 	"sync"
-)
 
-import (
-	perrors "github.com/pkg/errors"
-)
-
-import (
+	registry "github.com/mosn/registry/dubbo"
 	"github.com/mosn/registry/dubbo/common"
 	"github.com/mosn/registry/dubbo/common/logger"
 	"github.com/mosn/registry/dubbo/config_center"
-	"github.com/mosn/registry/dubbo/registry"
 	"github.com/mosn/registry/dubbo/remoting"
 	zk "github.com/mosn/registry/dubbo/remoting/zookeeper"
+	perrors "github.com/pkg/errors"
 )
 
 // RegistryDataListener contains all URL information subscribed by zookeeper registry

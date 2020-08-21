@@ -19,14 +19,9 @@ package configurator
 
 import (
 	"strings"
-)
 
-import (
 	gxset "github.com/dubbogo/gost/container/set"
 	gxnet "github.com/dubbogo/gost/net"
-)
-
-import (
 	"github.com/mosn/registry/dubbo/common"
 	"github.com/mosn/registry/dubbo/common/constant"
 	"github.com/mosn/registry/dubbo/config_center"

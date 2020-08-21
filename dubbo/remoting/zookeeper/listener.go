@@ -22,19 +22,14 @@ import (
 	"strings"
 	"sync"
 	"time"
-)
 
-import (
-	"github.com/apache/dubbo-getty"
+	"github.com/dubbogo/getty"
 	"github.com/dubbogo/go-zookeeper/zk"
-	perrors "github.com/pkg/errors"
-)
-
-import (
 	"github.com/mosn/registry/dubbo/common"
 	"github.com/mosn/registry/dubbo/common/constant"
 	"github.com/mosn/registry/dubbo/common/logger"
 	"github.com/mosn/registry/dubbo/remoting"
+	perrors "github.com/pkg/errors"
 )
 
 var (

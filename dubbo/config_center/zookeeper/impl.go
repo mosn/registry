@@ -21,21 +21,16 @@ import (
 	"strings"
 	"sync"
 	"time"
-)
 
-import (
 	"github.com/dubbogo/go-zookeeper/zk"
 	gxset "github.com/dubbogo/gost/container/set"
-	perrors "github.com/pkg/errors"
-)
-
-import (
 	"github.com/mosn/registry/dubbo/common"
 	"github.com/mosn/registry/dubbo/common/constant"
 	"github.com/mosn/registry/dubbo/common/logger"
 	"github.com/mosn/registry/dubbo/config_center"
 	"github.com/mosn/registry/dubbo/config_center/parser"
 	"github.com/mosn/registry/dubbo/remoting/zookeeper"
+	perrors "github.com/pkg/errors"
 )
 
 const (
