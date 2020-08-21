@@ -19,6 +19,7 @@ package dubbo
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/url"
 	"os"
@@ -40,11 +41,13 @@ const (
 	RegistryConnDelay = 3
 	// MaxWaitInterval max wait interval
 	MaxWaitInterval = 3 * time.Second
+
 )
 
 var (
 	processID = ""
 	localIP   = ""
+	RegisteredError = errors.New("already registered")
 )
 
 func init() {
@@ -140,7 +143,8 @@ func (r *BaseRegistry) Register(conf *common.URL) error {
 	_, ok = r.services[conf.Key()]
 	r.cltLock.Unlock()
 	if ok {
-		return perrors.Errorf("Path{%s} has been registered", conf.Key())
+		logger.Errorf("Path{%s} has been registered", conf.Key())
+		return RegisteredError
 	}
 
 	err = r.register(conf)
