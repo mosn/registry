@@ -296,6 +296,10 @@ func (l *ZkEventListener) listenDirEvent(conf *common.URL, zkPath string, listen
 			go func(zkPath string, listener remoting.DataListener) {
 				if l.listenServiceNodeEvent(zkPath) {
 					listener.DataChange(remoting.Event{Path: zkPath, Action: remoting.EventTypeDel})
+					//remove cache. If don't do this, next node add event will not coming after provider restart.
+					l.pathMapLock.Lock()
+					delete(l.pathMap, dubboPath)
+					l.pathMapLock.Unlock()
 				}
 				logger.Warnf("listenSelf(zk path{%s}) goroutine exit now", zkPath)
 			}(dubboPath, listener)
